@@ -16,13 +16,16 @@ function set_data($array, $varray)
 
 function extend_data($array, $varray)
 {
-    for ($i = 0; $array[$i]; $i++)
+    $newdata = array();
+    foreach ($varray as $key => $yes)
     {
-        if (line_clear($array[$i], $varray))
-        {
-            $varray = test_case($array[$i], $varray);
+        if ($yes == 1){
+            echo $key." ".$yes.PHP_EOL;
+            $newdata[$key] = $yes;
         }
     }
+    print_r($newdata);
+    return ($new_data);
 }
 
 function test_case()
@@ -32,10 +35,9 @@ function test_case()
 
 function line_clear($array, $varray)
 {
-    $true = find_true($varray);
     for ($j = 0; $array[$j] !== "=>" ; $j++)
     {
-        if (ctype_alpha($array[$j]) && array_key_exists($array[$j], $true) === false)
+//        if (ctype_alpha($array[$j]) && array_key_exists($array[$j], ) === false)
         {
             return false;
         }
@@ -43,14 +45,4 @@ function line_clear($array, $varray)
     return true;
 }
 
-function find_true($varray)
-{
-    $true = array();
-    foreach ($varray as $key => $value)
-    {
-        if ($value === 1)
-            $true[$key] = 1;
-    }
-    return $true;
-}
 ?>
