@@ -19,8 +19,8 @@ function extend_data($array, $varray)
     $newdata = array();
     foreach ($varray as $key => $yes)
     {
-        if ($yes == 1){
-            echo $key." ".$yes.PHP_EOL;
+        if ($yes == 1)
+        {
             $newdata[$key] = $yes;
         }
     }
