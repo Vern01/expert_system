@@ -1,21 +1,29 @@
 <?php
 function simple_solve(&$data, &$pvalue)
 {
-    $size = count($data);
-    $new = $size;
+    $size = count($data) - 1;
+    $new = count($data) - 2;
+    print_r($data);
     while ($size > $new)
     {
         $size = $new;
-        for ($i=0; $i < $size - 2; $i++)
+        echo $size.PHP_EOL;
+        for ($i=0; $i < ($size - 2); $i++)
         {
+            echo $i.PHP_EOL;
             if (all_accounted($data[$i], $pvalue))
             {
                 get_answer($data[$i], $pvalue);//Finish
-                remove_row($data, $i);
+          //      print("delete ".PHP_EOL);
+            //    print_r($data[$i]);
+                array_splice($data, $i, 1);
+              //  print("done");
             }
         }
         $new = count($data);
     }
+    print_r($data);
+    return $pvalue;
 }
 
 function remove_row(&$data, $index)
@@ -25,10 +33,12 @@ function remove_row(&$data, $index)
 
 function get_answer($data, &$pvalue)
 {
-        //Ross code..
+    //echo "this stuff";
+    //print_r ($data); 
+    //echo "end of this stuff".PHP_EOL;
 }
 
-function all_accounted($array, $defarray)
+function all_accounted($array, $pvalue)
 {
     for ($i=0; $i < count($array); $i++)
     {
