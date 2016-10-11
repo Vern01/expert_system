@@ -1,7 +1,7 @@
 <?php
 function set_data($array, $varray)
 {
-    for ($i = count($array); $i >= 0; --$i)
+    for ($i = count($array) - 1; $i >= 0; $i--)
     {
         if (substr($array[$i][0], 0, 1) === '=')
         {
@@ -25,7 +25,7 @@ function extend_data($array, $varray)
         }
     }
     print_r($newdata);
-    return ($new_data);
+    return ($newdata);
 }
 
 function test_case()

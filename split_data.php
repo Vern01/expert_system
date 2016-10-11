@@ -10,7 +10,7 @@ function get_data($filename)
         {
             $line = preg_replace("/\s\s+/", ' ', $line);
             $line = substr($line, 0, strpos($line, '#'));
-            $data[] = split(' ', $line);
+            $data[] = explode(' ', $line);
         }
     }
     return $data;

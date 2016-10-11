@@ -2,9 +2,9 @@
 function data_piece($data)
 {
     $array = array();
-    for ($i = 0; $data[$i]; $i++)
+    for ($i = 0; $i < count($data); $i++)
     {
-        for ($j = 0; $data[$i][$j]; $j++)
+        for ($j = 0; $j < count($data[$i]); $j++)
         {
             if (strlen($data[$i][$j]) == 1 && ctype_upper($data[$i][$j]))
                 $array = add_uni($array, $data[$i][$j]);
