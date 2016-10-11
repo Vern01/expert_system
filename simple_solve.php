@@ -6,7 +6,7 @@ function simple_solve(&$data, &$pvalue)
     while ($size > $new)
     {
         $size = $new;
-        for ($i=0; $i < $size; $i++)
+        for ($i=0; $i < $size - 2; $i++)
         {
             if (all_accounted($data[$i], $pvalue))
             {
@@ -30,9 +30,11 @@ function get_answer($data, &$pvalue)
 
 function all_accounted($array, $defarray)
 {
-    for ($i=0; $i < count($array); $i += 2)
+    for ($i=0; $i < count($array); $i++)
     {
-        if ($pvalue[$array[$i]] == 0)
+        if ($array[$i] == "=>" || $array[$i] == "<=>")
+            break ;
+        if (ctype_alpha($array[$i]) && $pvalue[$array[$i]] == 0)
             return (false);
     }
     return (true);
