@@ -1,8 +1,8 @@
 <?php
 function simple_solve(&$data, &$pvalue)
 {
-    $size = count($data);
-    $new = $size;
+    $size = count($data) + 1;
+    $new = count($data);
     while ($size > $new)
     {
         $size = $new;
@@ -25,10 +25,27 @@ function remove_row(&$data, $index)
 
 function get_answer($data, &$pvalue)
 {
-        //Ross code..
+    $temp = convert2value($data, $pvalue);
+    while (count($temp) != 3)
+    {
+
+    }
 }
 
-function all_accounted($array, $defarray)
+function convert2value($data, $pvalue)
+{
+    $temp = $data;
+    for ($i=0; $i < count($data); $i++) {
+        if ($data[$i] == "=>" || $data[$i] == "<=>")
+            break ;
+        if (ctype_alpha($data[$i])) {
+            $temp[$i] = $pvalue[$data[$i]];
+        }
+    }
+    return ($temp);
+}
+
+function all_accounted($array, $pvalue)
 {
     for ($i=0; $i < count($array); $i++)
     {
