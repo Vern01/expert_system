@@ -14,10 +14,7 @@ function simple_solve(&$data, &$pvalue)
             if (all_accounted($data[$i], $pvalue))
             {
                 get_answer($data[$i], $pvalue);//Finish
-          //      print("delete ".PHP_EOL);
-            //    print_r($data[$i]);
                 array_splice($data, $i, 1);
-              //  print("done");
             }
         }
         $new = count($data);
@@ -33,9 +30,9 @@ function remove_row(&$data, $index)
 
 function get_answer($data, &$pvalue)
 {
-    //echo "this stuff";
-    //print_r ($data); 
-    //echo "end of this stuff".PHP_EOL;
+    echo "this stuff";
+    print_r ($data); 
+    echo "end of this stuff".PHP_EOL;
 }
 
 function all_accounted($array, $pvalue)
