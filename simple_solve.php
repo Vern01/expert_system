@@ -1,5 +1,5 @@
 <?php
-require_once("solvers.php")
+require_once("solvers.php");
 function simple_solve(&$data, &$pvalue)
 {
     $size = count($data) + 1;
@@ -11,6 +11,7 @@ function simple_solve(&$data, &$pvalue)
         {
             if (all_accounted($data[$i], $pvalue))
             {
+                convert2value($data[$i], $pvalue);
                 get_answer($data[$i], $pvalue);//Finish
                 unset($data[$i]);
             }
@@ -24,7 +25,7 @@ function simple_solve(&$data, &$pvalue)
 
 function get_answer($array, &$pvalue)
 {
-    if (in_array(")", $array))
+/*    if (in_array(")", $array))
         bracket_solve($array);
     if (check_neg($array))
         neg_solve($array);
@@ -40,7 +41,7 @@ function get_answer($array, &$pvalue)
         defente($array);
     else {
         echo "This is an invalid rule." . PHP_EOL;
-    }
+    }*/
 }
 
 function check_neg($array)
@@ -52,17 +53,19 @@ function check_neg($array)
     return (false);
 }
 
-function convert2value($data, $pvalue)
+function convert2value(&$data, $pvalue)
 {
-    $temp = $data;
     for ($i=0; $i < count($data); $i++) {
         if ($data[$i] == "=>" || $data[$i] == "<=>")
             break ;
         if (ctype_alpha($data[$i])) {
-            $temp[$i] = $pvalue[$data[$i]];
+            $data[$i] = $pvalue[$data[$i]];
+        }
+        elseif (substr($data[$i], 0, 1) === "!") {
+            $data[$i] = intval($pvalue[substr($data[$i], 1, 1)]) * -1;
         }
     }
-    return ($temp);
+    return ($data);
 }
 
 function all_accounted($array, $pvalue)

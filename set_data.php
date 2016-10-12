@@ -26,22 +26,4 @@ function extend_data($array, $varray)
     }
     return ($newdata);
 }
-
-function test_case()
-{
-
-}
-
-function line_clear($array, $varray)
-{
-    for ($j = 0; $array[$j] !== "=>" ; $j++)
-    {
-//        if (ctype_alpha($array[$j]) && array_key_exists($array[$j], ) === false)
-        {
-            return false;
-        }
-    }
-    return true;
-}
-
 ?>
