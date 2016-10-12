@@ -6,16 +6,18 @@ function simple_solve(&$data, &$pvalue)
     while ($size > $new)
     {
         $size = $new;
-        for ($i=0; $i < $size - 2; $i++)
+        for ($i=0; $i < ($size - 2); $i++)
         {
             if (all_accounted($data[$i], $pvalue))
             {
                 get_answer($data[$i], $pvalue);//Finish
-                remove_row($data, $i);
+                unset($data[$i]);
             }
         }
+        $data = array_merge($data);
         $new = count($data);
     }
+    return $pvalue;
 }
 
 function remove_row(&$data, $index)
@@ -25,11 +27,6 @@ function remove_row(&$data, $index)
 
 function get_answer($data, &$pvalue)
 {
-    $temp = convert2value($data, $pvalue);
-    while (count($temp) != 3)
-    {
-
-    }
 }
 
 function convert2value($data, $pvalue)

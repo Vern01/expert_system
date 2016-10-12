@@ -24,7 +24,6 @@ function extend_data($array, $varray)
             $newdata[$key] = $yes;
         }
     }
-    print_r($newdata);
     return ($newdata);
 }
 
