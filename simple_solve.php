@@ -1,4 +1,5 @@
 <?php
+require_once("solvers.php")
 function simple_solve(&$data, &$pvalue)
 {
     $size = count($data) + 1;
@@ -17,16 +18,38 @@ function simple_solve(&$data, &$pvalue)
         $data = array_merge($data);
         $new = count($data);
     }
+    print_r($data);
     return $pvalue;
 }
 
-function remove_row(&$data, $index)
+function get_answer($array, &$pvalue)
 {
-    array_splice($data, $index, 1);
+    if (in_array(")", $array))
+        bracket_solve($array);
+    if (check_neg($array))
+        neg_solve($array);
+    if (in_array("+", $array))
+        and_solve($array);
+    if (in_array("|", $array))
+        or_solve($array);
+    if (in_array("^", $array))
+        eor_solve($array);
+    if (in_array("=>", $array))
+        implie($array);
+    else if (in_array("<=>", $array))
+        defente($array);
+    else {
+        echo "This is an invalid rule." . PHP_EOL;
+    }
 }
 
-function get_answer($data, &$pvalue)
+function check_neg($array)
 {
+    foreach ($array as $key => $value) {
+        if (strpos($value, "!") !== false)
+            return (true);
+    }
+    return (false);
 }
 
 function convert2value($data, $pvalue)
