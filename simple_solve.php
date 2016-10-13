@@ -25,7 +25,7 @@ function simple_solve(&$data, &$pvalue)
 
 function get_answer($array, &$pvalue)
 {
-    echo "before mafs".PHP_EOL;
+//    echo "before mafs".PHP_EOL;
 //    print_r($array);
 //    echo "end".PHP_EOL;
     if (in_array("+", $array))
@@ -34,8 +34,7 @@ function get_answer($array, &$pvalue)
         or_solve($array, $pvalue);
     if (in_array("^", $array))
         eor_solve($array, $pvalue);
-    print_r($array);
-    echo "after mafs".PHP_EOL;
+//    echo "after mafs".PHP_EOL;
 //    print_r($array);
 //    echo "end mafs".PHP_EOL;
 /*    if (in_array(")",  $array))
