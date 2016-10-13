@@ -26,24 +26,20 @@ function simple_solve(&$data, &$pvalue)
 function get_answer($array, &$pvalue)
 {
     echo "before mafs".PHP_EOL;
+//    print_r($array);
+//    echo "end".PHP_EOL;
+    if (in_array("+", $array))
+        and_solve($array, $pvalue);
+    if (in_array("|", $array))
+        or_solve($array, $pvalue);
+    if (in_array("^", $array))
+        eor_solve($array, $pvalue);
     print_r($array);
-    echo "end".PHP_EOL;
-    for ($i = 0; $i < count($array); $i++)
-    {
-        if ($array[$i] == "+")
-        {
-            echo $array[$i];
-            $answer = do_and($array[$i - 1], $array[$i + 1]);
-            echo "answer = ".$answer.PHP_EOL;
-        }
-    }
     echo "after mafs".PHP_EOL;
-    print_r($array);
-    echo "end mafs".PHP_EOL;
+//    print_r($array);
+//    echo "end mafs".PHP_EOL;
 /*    if (in_array(")",  $array))
         bracket_solve($array);
-    if (check_neg($array))
-        neg_solve($array);
     if (in_array("+", $array))
         and_solve($array);
     if (in_array("|", $array))
