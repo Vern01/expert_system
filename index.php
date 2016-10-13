@@ -4,6 +4,7 @@ require_once('split_data.php');
 require_once('data_pieces.php');
 require_once('set_data.php');
 require_once('simple_solve.php');
+require_once('do_math.php');
 if (count($argv) == 1)
     return ;
 $data = get_data($argv[1]);
