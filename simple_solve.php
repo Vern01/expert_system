@@ -34,11 +34,47 @@ function get_answer($array, &$pvalue)
         {
             echo $array[$i];
             $answer = do_and($array[$i - 1], $array[$i + 1]);
-            echo "answer = ".$answer.PHP_EOL;
+            echo "answer and = ".$answer.PHP_EOL;
+            for ($a =0; $a < count($array); $a++)
+            {
+                if (strpos($array[$a], "=") == true)
+                {
+                    echo "it's here".$array[$a + 1].PHP_EOL;
+                    $pvalue[$array[$a + 1]] = $answer;
+                }
+            } 
+        }
+        elseif ($array[$i] == "|")
+        {
+            echo $array[$i];
+            $answer = do_or($array[$i - 1], $array[$i + 1]);
+            echo "answer or= ".$answer.PHP_EOL;
+            for ($a =0; $a < count($array); $a++)
+            {
+                if (strpos($array[$a], "=") == true)
+                {
+                    echo "it's here".$array[$a + 1].PHP_EOL;
+                    $pvalue[$array[$a + 1]] = $answer;
+                }
+            }
+        }
+        elseif ($array[$i] == "^")
+        {
+            echo $array[$i];
+            $answer = do_eor($array[$i - 1], $array[$i + 1]);
+            echo "answer eor= ".$answer.PHP_EOL;
+            for ($a =0; $a < count($array); $a++)
+            {
+                if (strpos($array[$a], "=") == true)
+                {
+                    echo "it's here".$array[$a + 1].PHP_EOL;
+                    $pvalue[$array[$a + 1]] = $answer;
+                }
+            }
         }
     }
     echo "after mafs".PHP_EOL;
-    print_r($array);
+    print_r($pvalue);
     echo "end mafs".PHP_EOL;
 /*    if (in_array(")", $array))
         bracket_solve($array);
