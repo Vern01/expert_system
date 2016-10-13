@@ -40,7 +40,7 @@ function get_answer($array, &$pvalue)
     echo "after mafs".PHP_EOL;
     print_r($array);
     echo "end mafs".PHP_EOL;
-/*    if (in_array(")", $array))
+/*    if (in_array(")",  $array))
         bracket_solve($array);
     if (check_neg($array))
         neg_solve($array);
