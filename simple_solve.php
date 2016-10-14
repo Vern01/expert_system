@@ -12,8 +12,8 @@ function simple_solve(&$data, &$pvalue)
             if (all_accounted($data[$i], $pvalue))
             {
                 convert2value($data[$i], $pvalue);
-                get_answer($data[$i], $pvalue);//Finish
-                unset($data[$i]);
+                if (get_answer($data[$i], $pvalue))//Finish
+                    unset($data[$i]);
             }
         }
         $data = array_merge($data);
@@ -26,35 +26,43 @@ function simple_solve(&$data, &$pvalue)
 
 function get_answer($array, &$pvalue)
 {
-//    echo "before mafs".PHP_EOL;
-//    print_r($array);
-//    echo "end".PHP_EOL;
-    if (count($array) == 4)
-        return ;
+    echo "bee : ".check_prams($array).PHP_EOL;
+    if (check_prams($array) < 3)
+    {
+        front_solve($array, $pvalue);
+        return true;
+    }
+    else {
+        backward_solve($array, $pvalue);
+        //return true;# code...
+    }
+    return false;
+    print_r($array);
+}
+function front_solve($array, &$pvalue)
+{
+//    if (count($array) == 4)
+//        return ;
     if (in_array("+", $array))
         and_solve($array, $pvalue);
     if (in_array("|", $array))
         or_solve($array, $pvalue);
     if (in_array("^", $array))
         eor_solve($array, $pvalue);
-//    echo "after mafs".PHP_EOL;
-//    print_r($array);
-//    echo "end mafs".PHP_EOL;
-/*    if (in_array(")",  $array))
-        bracket_solve($array);
-    if (in_array("+", $array))
-        and_solve($array);
-    if (in_array("|", $array))
-        or_solve($array);
-    if (in_array("^", $array))
-        eor_solve($array);
-    if (in_array("=>", $array))
-        implie($array);
-    else if (in_array("<=>", $array))
-        defente($array);
-    else {
-        echo "This is an invalid rule." . PHP_EOL;
-    }*/
+    return ($array);
+}
+
+function check_prams($array)
+{
+    $i = count($array) -2;
+    $b = 0;
+    while ($i > 0)
+    {
+        if ($array[$i] == "=>" || $array[$i] == "<=>")
+            return $b;
+        $i--;
+        $b++;
+    }
 }
 
 function check_neg($array)
@@ -69,9 +77,9 @@ function check_neg($array)
 function convert2value(&$data, $pvalue)
 {
     for ($i=0; $i < count($data); $i++) {
-        if ($data[$i] == "=>" || $data[$i] == "<=>")
-            break ;
-        if (ctype_alpha($data[$i])) {
+        //if ($data[$i] == "=>" || $data[$i] == "<=>")
+        //    break ;
+        if (ctype_alpha($data[$i]) && $pvalue[$data[$i]] != 0) {
             if (ctype_alpha($pvalue[$data[$i]]))
                 $data[$i] = $pvalue[$pvalue[$data[$i]]];
             else
