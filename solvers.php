@@ -7,6 +7,7 @@ function bracket_solve(&$array, $index)
 
 function and_solve(&$array, &$pvalue)
 {
+    $temp = $array;
     while (($index = array_search("+", $array)) !== false && $index < array_search("=>", $array))
     {
         array_splice($array, $index - 1, 3, do_and($array[$index - 1], $array[$index + 1]));
@@ -40,6 +41,11 @@ function handle_pvalue(&$array, &$pvalue)
         {
             echo "There is a contrediction for (" . $array[0] . ", " . $pvalue[$array[2]] .PHP_EOL;
             return ;
+        }
+        if (substr($array[2], 0, 1) == "!")
+        {
+            $array[2] = substr($array[2], 1, 1);
+            $array[0] = $array[0] * -1;
         }
         $pvalue[$array[2]] = $array[0];
     }

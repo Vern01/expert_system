@@ -19,6 +19,7 @@ function simple_solve(&$data, &$pvalue)
         $data = array_merge($data);
         $new = count($data);
     }
+    print_r($data);
     print_r($pvalue);
     return $pvalue;
 }
@@ -28,6 +29,8 @@ function get_answer($array, &$pvalue)
 //    echo "before mafs".PHP_EOL;
 //    print_r($array);
 //    echo "end".PHP_EOL;
+    if (count($array) == 4)
+        return ;
     if (in_array("+", $array))
         and_solve($array, $pvalue);
     if (in_array("|", $array))
@@ -69,7 +72,10 @@ function convert2value(&$data, $pvalue)
         if ($data[$i] == "=>" || $data[$i] == "<=>")
             break ;
         if (ctype_alpha($data[$i])) {
-            $data[$i] = $pvalue[$data[$i]];
+            if (ctype_alpha($pvalue[$data[$i]]))
+                $data[$i] = $pvalue[$pvalue[$data[$i]]];
+            else
+                $data[$i] = $pvalue[$data[$i]];
         }
         elseif (substr($data[$i], 0, 1) === "!") {
             $data[$i] = intval($pvalue[substr($data[$i], 1, 1)]) * -1;
@@ -78,15 +84,19 @@ function convert2value(&$data, $pvalue)
     return ($data);
 }
 
-function all_accounted($array, $pvalue)
+function all_accounted($array, &$pvalue)
 {
-    for ($i=0; $i < count($array); $i++)
-    {
-        if ($array[$i] == "=>" || $array[$i] == "<=>")
-            break ;
-        if (ctype_alpha($array[$i]) && $pvalue[$array[$i]] == 0)
-            return (false);
-    }
+    $size = count($array);
+    if ($size == 4 && ctype_alpha($array[0]) && ctype_alpha($array[2]))
+        $pvalue[$array[2]] = $array[0];
+    elseif ($size != 4)
+        for ($i=0; $i < $size; $i++)
+        {
+            if ($array[$i] == "=>" || $array[$i] == "<=>")
+                break ;
+            if (ctype_alpha($array[$i]) && $pvalue[$array[$i]] === 0)
+                return (false);
+        }
     return (true);
 }
 ?>
