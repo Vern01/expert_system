@@ -39,7 +39,10 @@ function handle_pvalue(&$array, &$pvalue)
     {
         if ($array[0] != 0 && $pvalue[$array[2]] != 0 && $array[0] != $pvalue[$array[2]])
         {
-            echo "There is a contrediction for (" . $array[0] . ", " . $pvalue[$array[2]] .PHP_EOL;
+            if (ctype_alpha($pvalue[$array[2]]))
+                echo $array[2] . " has been set to another value";
+            else
+                echo "There is a contrediction for (" . $array[0] . ", " . $pvalue[$array[2]] .PHP_EOL;
             return ;
         }
         if (substr($array[2], 0, 1) == "!")
