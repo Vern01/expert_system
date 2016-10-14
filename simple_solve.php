@@ -19,7 +19,7 @@ function simple_solve(&$data, &$pvalue)
         $data = array_merge($data);
         $new = count($data);
     }
-    print_r($data);
+    print_r($pvalue);
     return $pvalue;
 }
 
