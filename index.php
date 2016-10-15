@@ -13,4 +13,6 @@ $pvalue = data_piece($data);
 $pvalue = set_data($data, $pvalue);
 $extend = extend_data($data, $pvalue);
 $pvalue = simple_solve($data, $pvalue);
+print_r($data);
+print_r($pvalue);
 ?>

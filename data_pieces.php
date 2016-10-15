@@ -15,7 +15,7 @@ function data_piece($data)
 
 function add_uni($array, $str)
 {
-    $array[$str] = 0;
+    $array[$str] = -1;
     ksort($array);
     return $array;
 }

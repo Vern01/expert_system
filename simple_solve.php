@@ -19,30 +19,27 @@ function simple_solve(&$data, &$pvalue)
         $data = array_merge($data);
         $new = count($data);
     }
-    print_r($data);
-    print_r($pvalue);
     return $pvalue;
 }
 
 function get_answer($array, &$pvalue)
 {
-    echo "bee : ".check_prams($array).PHP_EOL;
     if (check_prams($array) < 3)
     {
         front_solve($array, $pvalue);
         return true;
     }
-    else {
+    else
+    {
         backward_solve($array, $pvalue);
         //return true;# code...
     }
-    return false;
-    print_r($array);
+    return (false);
 }
+
+
 function front_solve($array, &$pvalue)
 {
-//    if (count($array) == 4)
-//        return ;
     if (in_array("+", $array))
         and_solve($array, $pvalue);
     if (in_array("|", $array))
@@ -79,7 +76,7 @@ function convert2value(&$data, $pvalue)
     for ($i=0; $i < count($data); $i++) {
         //if ($data[$i] == "=>" || $data[$i] == "<=>")
         //    break ;
-        if (ctype_alpha($data[$i]) && $pvalue[$data[$i]] != 0) {
+        if (ctype_alpha($data[$i]) && $pvalue[$data[$i]] != -1) {
             if (ctype_alpha($pvalue[$data[$i]]))
                 $data[$i] = $pvalue[$pvalue[$data[$i]]];
             else
@@ -102,7 +99,7 @@ function all_accounted($array, &$pvalue)
         {
             if ($array[$i] == "=>" || $array[$i] == "<=>")
                 break ;
-            if (ctype_alpha($array[$i]) && $pvalue[$array[$i]] === 0)
+            if (ctype_alpha($array[$i]) && $pvalue[$array[$i]] === -1)
                 return (false);
         }
     return (true);
