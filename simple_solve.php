@@ -31,12 +31,26 @@ function get_answer($array, &$pvalue)
     }
     else
     {
+        $a = check_if_fucker_solvable($array);
         backward_solve($array, $pvalue);
-        //return true;# code...
+        if ($a == 1)
+            return false;
+        return true;# code...
     }
-    return (false);
 }
 
+function check_if_fucker_solvable($array)
+{
+    foreach($array as $yes)
+    {
+        echo $yes.PHP_EOL;
+        if (ctype_alpha($yes))
+            $a++;
+        if ($a > 1)
+            return 1;
+    }
+    return 0;
+}
 
 function front_solve($array, &$pvalue)
 {

@@ -2,6 +2,7 @@
 function backward_solve($array, &$pvalue)
 {
     $data = front_solve($array, $pvalue);
+    echo "hierso".PHP_EOL;
     print_r($data);
     if (in_array("+", $array))
     {
