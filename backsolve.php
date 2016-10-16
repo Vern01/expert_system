@@ -16,6 +16,9 @@ function backward_solve($array, &$pvalue)
     }
     if (in_array("|", $array))
     {
+        echo "or".PHP_EOL;
+        print_r($prams);
+        print_r($data);
         if ($prams[0] == 1)
         {
             if($prams[1] == 1)
@@ -41,15 +44,18 @@ function find_prams($array)
     $prams = array();
     $i = 0;
     $b = 0;
-    while ($i < count($array))
+    echo "hello pram";
+    foreach($array as $yes)
     {
-        if ($array[$i] == ctype_digit($array[$i]))
+        echo " : ".$i.PHP_EOL;
+        if (is_int($yes))
         {
-            $prams[$b] = $array[$i];
+            $prams[$b] = $yes;
             $b++;
         }
-        $i++;
     }
+    print_r($prams);
+    return $prams;
 }
 
 function findpos($array)
