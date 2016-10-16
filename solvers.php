@@ -21,7 +21,6 @@ function or_solve(&$array, &$pvalue)
     {
         array_splice($array, $index - 1, 3, do_or($array[$index - 1], $array[$index + 1]));
     }
-    print_r($array);
     handle_pvalue($array, $pvalue);
 }
 
@@ -38,7 +37,8 @@ function handle_pvalue(&$array, &$pvalue)
 {
     if ($array[1] == "=>")
     {
-        if ($array[0] != 0 && $pvalue[$array[2]] != -1 && $array[0] != $pvalue[$array[2]])
+        $pos = findpos($array);
+        if (($array[0] != 0) && ($pvalue[$array[$pos]] != -1) && ($array[0] != $pvalue[$array[2]]))
         {
             if (ctype_alpha($pvalue[$array[2]]))
                 echo $array[2] . " has been set to another value";

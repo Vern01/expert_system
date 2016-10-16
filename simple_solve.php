@@ -41,9 +41,9 @@ function get_answer($array, &$pvalue)
 
 function check_if_fucker_solvable($array)
 {
+    $a = 0;
     foreach($array as $yes)
     {
-        echo $yes.PHP_EOL;
         if (ctype_alpha($yes))
             $a++;
         if ($a > 1)
