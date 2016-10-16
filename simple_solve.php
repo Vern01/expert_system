@@ -32,11 +32,9 @@ function get_answer($array, &$pvalue)
     else
     {
         backward_solve($array, $pvalue);
-        //return true;# code...
     }
     return (false);
 }
-
 
 function front_solve($array, &$pvalue)
 {
@@ -71,22 +69,25 @@ function check_neg($array)
     return (false);
 }
 
-function convert2value(&$data, $pvalue)
+function convert2value(&$array, $pvalue)
 {
-    for ($i=0; $i < count($data); $i++) {
-        //if ($data[$i] == "=>" || $data[$i] == "<=>")
-        //    break ;
-        if (ctype_alpha($data[$i]) && $pvalue[$data[$i]] != -1) {
-            if (ctype_alpha($pvalue[$data[$i]]))
-                $data[$i] = $pvalue[$pvalue[$data[$i]]];
+    for ($i=0; $i < count($array); $i++) {
+        if (ctype_alpha($array[$i]) && $pvalue[$array[$i]] != 0) {
+            if (ctype_alpha($pvalue[$array[$i]]))
+            {
+                $array[$i] = $pvalue[$pvalue[$array[$i]]];
+                while (ctype_alpha($array[$i]))
+                    $array[$i] = $pvalue[$pvalue[$array[$i]]];
+            }
             else
-                $data[$i] = $pvalue[$data[$i]];
+                $array[$i] = $pvalue[$array[$i]];
         }
-        elseif (substr($data[$i], 0, 1) === "!") {
-            $data[$i] = intval($pvalue[substr($data[$i], 1, 1)]) * -1;
+        elseif (substr($array[$i], 0, 1) === "!") {
+            $array[$i] = intval($pvalue[substr($array[$i], 1, 1)]) * -1;
         }
     }
-    return ($data);
+    print_r($array);
+    return ($array);
 }
 
 function all_accounted($array, &$pvalue)
@@ -99,7 +100,7 @@ function all_accounted($array, &$pvalue)
         {
             if ($array[$i] == "=>" || $array[$i] == "<=>")
                 break ;
-            if (ctype_alpha($array[$i]) && $pvalue[$array[$i]] === -1)
+            if (ctype_alpha($array[$i]) && $pvalue[$array[$i]] !== 1)
                 return (false);
         }
     return (true);
