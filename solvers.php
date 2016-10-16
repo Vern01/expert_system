@@ -1,5 +1,6 @@
 <?php
 require_once("do_math.php");
+require_once("bracket_solve.php");
 
 function bracket_solve(&$array, $pvalue)
 {
@@ -7,7 +8,14 @@ function bracket_solve(&$array, $pvalue)
     {
         if (($index2 = array_search("(", $array + $index)) < ($index3 = array_search(")", $array + $index)))
         {
-    //        array_splice($array, $index + $index2, $index3 - $index2, bracket_solve($array + $index)
+            array_splice($array, $index + $index2, $index3 - $index2, bracket_solve($array + $index));
+        }
+        else
+        {
+            and_bracket($array);
+            or_bracket($array);
+            eor_bracket($array);
+            return $array[0];
         }
     }
 }
@@ -27,7 +35,6 @@ function or_solve(&$array, &$pvalue)
     {
         array_splice($array, $index - 1, 3, do_or($array[$index - 1], $array[$index + 1]));
     }
-    print_r($array);
     handle_pvalue($array, $pvalue);
 }
 

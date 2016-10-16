@@ -19,6 +19,7 @@ function simple_solve(&$data, &$pvalue)
         $data = array_merge($data);
         $new = count($data);
     }
+    print_r($pvalue);
     return $pvalue;
 }
 
@@ -54,13 +55,18 @@ function check_if_fucker_solvable($array)
 
 function front_solve($array, &$pvalue)
 {
+    if (in_array("(", $array))
+    {
+        bracket_solve($array);
+        print_r($array);
+    }
     if (in_array("+", $array))
         and_solve($array, $pvalue);
     if (in_array("|", $array))
         or_solve($array, $pvalue);
     if (in_array("^", $array))
         eor_solve($array, $pvalue);
-    return ($array);
+    return ($array[0]);
 }
 
 function check_prams($array)
@@ -102,7 +108,6 @@ function convert2value(&$array, $pvalue)
             $array[$i] = intval($pvalue[substr($array[$i], 1, 1)]) * -1;
         }
     }
-    print_r($array);
     return ($array);
 }
 
