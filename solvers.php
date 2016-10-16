@@ -1,13 +1,13 @@
 <?php
 require_once("do_math.php");
 
-function bracket_solve(&$array)
+function bracket_solve(&$array, $pvalue)
 {
     while($index = array_search("(", $array) !== false)
     {
         if (($index2 = array_search("(", $array + $index)) < ($index3 = array_search(")", $array + $index)))
         {
-        //    array_splice($array, $index + $index2, $index3 - $index2, bracket_solve($array + $index)
+    //        array_splice($array, $index + $index2, $index3 - $index2, bracket_solve($array + $index)
         }
     }
 }

@@ -31,9 +31,25 @@ function get_answer($array, &$pvalue)
     }
     else
     {
+        $a = check_if_fucker_solvable($array);
         backward_solve($array, $pvalue);
+        if ($a == 1)
+            return false;
+        return true;
     }
-    return (false);
+}
+
+function check_if_fucker_solvable($array)
+{
+    $a = 0;
+    foreach($array as $yes)
+    {
+        if (ctype_alpha($yes))
+            $a++;
+        if ($a > 1)
+            return 1;
+    }
+    return 0;
 }
 
 function front_solve($array, &$pvalue)
